@@ -26,7 +26,18 @@ class User extends CI_Controller {
     // Add a new item
     public function add()
     {
-
+        $data = array('nama_user' => $this->input->post('nama_user'),
+                      'username'  => $this->input->post('username'),
+                      'password'  => $this->input->post('password'),
+                      'level_user' => $this->input->post('level_user')
+                    );
+                    $this->m_user->add($data);
+                    $this->session->set_flashdata('pesan', 'Data Berhasil Ditambahkan');
+                    
+                    redirect('user');
+                    
+                    
+                
     }
 
     //Update one item

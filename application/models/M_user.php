@@ -12,6 +12,11 @@ class M_user extends CI_Model {
         return $this->db->get()->result();
         
     }    
+    public function add($data)
+    {
+        $this->db->insert('tbl_user', $data);
+        
+    }
 
 }
 /* End of file M_user.php */
