@@ -79,7 +79,22 @@
                   <span class="right badge badge-danger">New</span>
                 </p>
               </a>
+          </li>
+
+           <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-user"></i>
+                <p> User </p>
+              </a>
+          </li>      
+
+          <li class="nav-item">
+              <a href="<?= base_url('auth/logout_user') ?>" class="nav-link">
+                <i class="nav-icon fas fa-sign"></i>
+                <p> Logout</p>
+              </a>
           </li>   
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
