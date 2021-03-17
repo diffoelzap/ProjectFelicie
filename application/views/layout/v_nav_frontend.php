@@ -90,11 +90,15 @@
             <span class="badge badge-danger navbar-badge"><?= $jml_item ?></span>
           </a>
           <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-             <!-- Barang Start -->
-             
-            <?php foreach($keranjang as $key => $value){ 
-                  $barang = $this->m_home->detail_barang($value['id']);
-              ?>
+            <?php if(empty($keranjang)){ ?>
+               <a href="#" class="dropdown-item">
+               <p>Keranjang Belanja Kosong</p>
+               </a>
+            <?php }else{ 
+                    foreach($keranjang as $key => $value){ 
+                    $barang = $this->m_home->detail_barang($value['id']);
+            ?>
+            <!-- Barang Start -->
             <a href="#" class="dropdown-item">
               <div class="media">
                 <img src="<?= base_url('assets/gambar/'.$barang->gambar) ?>" alt="User Avatar" class="img-size-50 mr-3 img-circle">
@@ -110,23 +114,25 @@
             
             <div class="dropdown-divider"></div>
             <?php } ?>
+              <a href="#" class="dropdown-item">
+                <div class="media">
+                  <div class="media-body">
+                  <tr>
+                          <td colspan="2"> </td>
+                          <td class="right"><strong>Total</strong></td>
+                          <td class="right">Rp. <?= $this->cart->format_number($this->cart->total()); ?></td>
+                  </tr>
+                  </div>
+                </div>
+              </a>
+
+              <div class="dropdown-divider"></div>
+              <a href="<?= base_url('belanja') ?>" class="dropdown-item dropdown-footer">Lihat Belanja</a>
+              <a href="#" class="dropdown-item dropdown-footer">Check Out</a>       
+            <?php } ?>
             <!-- Barang End -->
           
-            <a href="#" class="dropdown-item">
-              <div class="media">
-                 <div class="media-body">
-                 <tr>
-                        <td colspan="2"> </td>
-                        <td class="right"><strong>Total</strong></td>
-                        <td class="right">Rp. <?= $this->cart->format_number($this->cart->total()); ?></td>
-                </tr>
-                </div>
-              </div>
-            </a>
-
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item dropdown-footer">Lihat Belanja</a>
-            <a href="#" class="dropdown-item dropdown-footer">Check Out</a>
+            
           </div>
         </li>
         <!-- Notifications Dropdown Menu -->

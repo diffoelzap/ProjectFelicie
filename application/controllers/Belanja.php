@@ -14,7 +14,10 @@ class Belanja extends CI_Controller {
     
     public function index()
     {
-        
+        $data = array(
+            'title'  => 'Keranjang Belanja',
+            'isi'    => 'v_belanja');
+        $this->load->view('layout/v_wrapper_frontend', $data, FALSE);
     }
 
     public function add()
