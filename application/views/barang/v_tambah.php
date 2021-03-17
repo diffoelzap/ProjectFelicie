@@ -42,7 +42,7 @@
                 <div class="col-sm-6">    
                     <div class="form-group">
                         <label>Harga Barang</label>
-                        <input type="number" name="harga" class="form-control" placeholder="Harga Barang" value="<?= set_value('harga') ?>">
+                        <input type="number" name="harga" class="form-control" placeholder="Harga Barang" value="<?= set_value('harga') ?>" min="1">
                     </div>
                 </div>            
             </div>
