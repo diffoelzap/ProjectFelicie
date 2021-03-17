@@ -44,7 +44,7 @@
                         <td class="text-center">
                             <a href="<?= base_url('barang/detail/'.$value->id_barang)?>" class="btn btn-info btn-sm"><i class="fa fa-cube"></i></a>
                             <a href="<?= base_url('barang/edit/'.$value->id_barang)?>" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
-                            <a href="" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+                            <button class="btn btn-danger btn-sm"   data-toggle="modal" data-target="#delete<?= $value->id_barang ?>"><i class="fa fa-trash"></i></button>
                         </td>
                     </tr>
                     <?php } ?>
@@ -56,3 +56,31 @@
     </div>
     <!-- /.card -->
 </div>
+
+<?php foreach ($barang as $key => $value) { ?>
+<div class="modal fade" id="delete<?= $value->id_barang ?>">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Hapus <?= $value->nama_barang ?></h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                 
+                <h5>Apakah anda ingin menghapus data ini...?</h5>
+
+            </div>
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+              <a href="<?= base_url('barang/delete/'.$value->id_barang) ?>" class="btn btn-primary">Hapus</a>
+            </div>
+            
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
+      <?php } ?>  

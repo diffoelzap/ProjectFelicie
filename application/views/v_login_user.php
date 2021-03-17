@@ -99,6 +99,12 @@
 <script src="<?= base_url() ?>template/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="<?= base_url() ?>template/dist/js/adminlte.min.js"></script>
-
+<script>
+    window.setTimeout(function() {
+        $(".alert").fadeTo(500,0).slideUp(500,function() {
+            $(this).remove();
+            });
+    },2000)
+</script>
 </body>
 </html>

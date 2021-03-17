@@ -41,7 +41,7 @@
         $(".alert").fadeTo(500,0).slideUp(500,function() {
             $(this).remove();
             });
-    },3000)
+    },2000)
 </script>
 <!-- Ck Editor Script -->
 <script>
