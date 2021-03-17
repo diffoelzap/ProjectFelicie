@@ -6,7 +6,22 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-        <?php echo form_open_multipart('barang/add') ?>
+        <?php 
+        //notifikasi form kosong
+        echo validation_errors(' <div class="alert alert-danger alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <h5><i class="icon fas fa-info"></i>','</h5></div>');
+
+        //notifikasi gagal upload
+        if(isset($error_upload)){
+            echo '<div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h5><i class="icon fas fa-info"></i>' . $error_upload . '</h5></div>';
+            
+        }
+
+        echo form_open_multipart('barang/add') 
+        ?>
           <div class="form-group">
             <label>Nama Barang</label>
             <input name="nama_barang" class="form-control" placeholder="Nama Barang" value="<?= set_value('nama_barang') ?>">
