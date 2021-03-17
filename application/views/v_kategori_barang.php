@@ -58,7 +58,7 @@ foreach ($barang as $key => $value) { ?>
                     </div>
                     <div class="col-sm-6">
                       <div class="text-right">
-                        <a href="<?= base_url('home/detail_barang/'.$value->id_barang) ?>" class="btn btn-sm btn-success">
+                        <a href="#" class="btn btn-sm btn-success">
                           <i class="fas fa-eye"></i>
                         </a>
                         <a href="#" class="btn btn-sm btn-primary">
