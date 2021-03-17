@@ -49,7 +49,7 @@
                         ?>
                         </td>
                         <td class="text-center">
-                            <button class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></button>
+                            <button class="btn btn-warning btn-sm"  data-toggle="modal" data-target="#edit<?= $value->id_user ?>"><i class="fa fa-edit"></i></button>
                             <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
                         </td>
                     </tr>
@@ -82,7 +82,7 @@
 
                   <div class="form-group">
                     <label>Nama User</label>
-                    <input type="text" name="nama_user" class="form-control" placeholder="Nama User" required>
+                    <input type="text" name="nama_user"  class="form-control" placeholder="Nama User" required>
                   </div>
                   <div class="form-group">
                     <label>Username</label>
@@ -114,3 +114,56 @@
         <!-- /.modal-dialog -->
       </div>
       <!-- /.modal -->
+
+           <!-- modal edit-->
+           <?php foreach ($user as $key => $value) { ?>
+<div class="modal fade" id="edit<?= $value->id_user ?>">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Tambah User</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                    <?php 
+
+                        echo form_open('user/edit/'.$value->id_user);
+                    ?>
+
+                  <div class="form-group">
+                    <label>Nama User</label>
+                    <input type="text" name="nama_user" value="<?= $value->nama_user ?>" class="form-control" placeholder="Nama User" required>
+                  </div>
+                  <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" name="username" value="<?= $value->username ?>" class="form-control" placeholder="Username" required>
+                  </div>
+                  <div class="form-group">
+                    <label>Password</label>
+                    <input type="text" name="password" value="<?= $value->password ?>" class="form-control" placeholder="Password" required>
+                  </div>          
+                  <div class="form-group">
+                    <label>Level</label>
+                    <select name="level_user" class="form-control">
+                        <option value="1" <?php if($value->level_user == 1){echo "selected";}?>>Admin</option>
+                        <option value="2" <?php if($value->level_user == 2){echo "selected";}?>>User</option>
+                    </select>
+                  </div>
+
+            </div>
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+              <button type="submit" class="btn btn-primary">Simpan</button>
+            </div>
+            <?php
+                echo form_close();
+            ?>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
+      <?php } ?>

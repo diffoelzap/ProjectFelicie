@@ -41,9 +41,17 @@ class User extends CI_Controller {
     }
 
     //Update one item
-    public function update( $id = NULL )
+    public function edit( $id_user = NULL )
     {
-
+        $data = array('id_user'   => $id_user,
+                      'nama_user' => $this->input->post('nama_user'),
+                      'username'  => $this->input->post('username'),
+                      'password'  => $this->input->post('password'),
+                      'level_user' => $this->input->post('level_user')
+                    );
+                    $this->m_user->edit($data);
+                    $this->session->set_flashdata('pesan', 'Data Berhasil Diedit');
+                    redirect('user');
     }
 
     //Delete one item
