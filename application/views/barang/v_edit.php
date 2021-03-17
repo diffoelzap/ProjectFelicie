@@ -20,18 +20,18 @@
             
         }
 
-        echo form_open_multipart('barang/add') 
+        echo form_open_multipart('barang/edit/'.$barang->id_barang) 
         ?>
           <div class="form-group">
             <label>Nama Barang</label>
-            <input name="nama_barang" class="form-control" placeholder="Nama Barang" value="<?= set_value('nama_barang') ?>">
+            <input name="nama_barang" class="form-control" placeholder="Nama Barang" value="<?= $barang->nama_barang ?>">
           </div>
           <div class="row">
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label>Kategori</label>
                         <select name="id_kategori" class="form-control">
-                            <option value="">--Pilih Kategori--</option>
+                            <option value="<?= $barang->id_barang ?>"><?= $barang->nama_kategori ?></option>
                             <?php foreach ($kategori as $key => $value) { ?>
                                 <option value="<?= $value->id_kategori ?>"><?= $value->nama_kategori ?></option>
                             <?php } ?>
@@ -42,32 +42,32 @@
                 <div class="col-sm-6">    
                     <div class="form-group">
                         <label>Harga Barang</label>
-                        <input type="number" name="harga" class="form-control" placeholder="Harga Barang" value="<?= set_value('harga') ?>">
+                        <input type="number" name="harga" class="form-control" placeholder="Harga Barang" value="<?= $barang->harga ?>">
                     </div>
                 </div>            
             </div>
             <div class="form-group">
                     <label>Deskripsi Barang</label>
-                    <textarea name="deskripsi" class="form-control" placeholder="Deskripsi Barang" rows="5" id="editor" value="<?= set_value('deskripsi') ?>">
+                    <textarea name="deskripsi" class="form-control" placeholder="Deskripsi Barang" rows="5" id="editor"><?= $barang->deskripsi ?>
                     </textarea>
             </div>
             <div class="row">
               <div class="col-sm-6">
                     <div class="form-group">
                             <label>Gambar Barang</label>
-                            <input type="file" name="gambar" class="form-control" id="preview_gambar" required>
+                            <input type="file" name="gambar" class="form-control" id="preview_gambar">
                     </div>
               </div>
               <div class="col-sm-6">
                     <div class="form-group">
-                          <img src="<?= base_url('assets/gambar/no_foto.jpg')?>" id="gambar_load" width="400px">
+                          <img src="<?= base_url('assets/gambar/'.$barang->gambar)?>" id="gambar_load" width="400px">
                     </div>
               </div>
             </div>
             
             <div class="form-group">
-                <button type="submit" class="btn btn-primary btn-lg">Simpan</button>
-                <a href="<?= base_url('barang') ?>" class="btn btn-success btn-lg">Kembali</a>
+                <button type="submit" class="btn btn-primary btn-sm">Simpan</button>
+                <a href="<?= base_url('barang') ?>" class="btn btn-success btn-sm">Kembali</a>
             </div>
             <?php echo form_close() ?>
         </div>

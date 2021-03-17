@@ -42,7 +42,8 @@
                         <td class="text-center">Rp. <?= number_format($value->harga,0) ?></td>
                         <td class="text-center"><img src="<?= base_url('assets/gambar/'.$value->gambar) ?>" width="150px"></td>
                         <td class="text-center">
-                            <a href="" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
+                            <a href="<?= base_url('barang/detail/'.$value->id_barang)?>" class="btn btn-info btn-sm"><i class="fa fa-cube"></i></a>
+                            <a href="<?= base_url('barang/edit/'.$value->id_barang)?>" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
                             <a href="" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
                         </td>
                     </tr>
