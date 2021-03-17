@@ -10,6 +10,7 @@ class Barang extends CI_Controller {
         parent::__construct();
         //Load Dependencies
         $this->load->model('m_barang');
+        $this->load->model('m_kategori');
         
     }
 
@@ -19,14 +20,20 @@ class Barang extends CI_Controller {
         $data = array(
             'title'  => 'Barang',
             'barang' => $this->m_barang->get_all_data(),
-            'isi'    => 'barang/v_barang');
+            'isi'    => 'barang/v_barang'
+        );
         $this->load->view('layout/v_wrapper_backend', $data, FALSE);
     }
 
     // Add a new item
     public function add()
     {
-
+        $data = array(
+            'title'    => 'Tambah Barang',
+            'kategori' => $this->m_kategori->get_all_data(),
+            'isi'      => 'barang/v_tambah'
+        );
+        $this->load->view('layout/v_wrapper_backend', $data, FALSE);
     }
 
     //Update one item

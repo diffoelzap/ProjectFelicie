@@ -4,7 +4,7 @@
         <h3 class="card-title">Data <?= $title ?></h3>
 
         <div class="card-tools">
-            <a href="" type="button" class="btn btn-primary btn-sm">
+            <a href="<?= base_url('barang/add') ?>" type="button" class="btn btn-primary btn-sm">
             <i class="fas fa-plus"></i>Tambah</a>
         </div>
         <!-- /.card-tools -->

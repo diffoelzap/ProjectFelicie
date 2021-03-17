@@ -8,30 +8,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="<?php base_url() ?>template/plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="<?= base_url() ?>template/plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- DataTables -->
-  <link rel="stylesheet" href="<?php base_url() ?>template/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-  <link rel="stylesheet" href="<?php base_url() ?>template/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="<?= base_url() ?>template/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="<?= base_url() ?>template/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="<?php base_url() ?>template/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="<?= base_url() ?>template/dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
     <!-- jQuery -->
-    <script src="<?php base_url() ?>template/plugins/jquery/jquery.min.js"></script>
+    <script src="<?= base_url() ?>template/plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
-    <script src="<?php base_url() ?>template/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="<?= base_url() ?>template/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- DataTables -->
-    <script src="<?php base_url() ?>template/plugins/datatables/jquery.dataTables.min.js"></script>
-    <script src="<?php base_url() ?>template/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-    <script src="<?php base_url() ?>template/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-    <script src="<?php base_url() ?>template/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="<?= base_url() ?>template/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="<?= base_url() ?>template/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="<?= base_url() ?>template/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="<?= base_url() ?>template/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
     <!-- AdminLTE App -->
-    <script src="<?php base_url() ?>template/dist/js/adminlte.min.js"></script>
+    <script src="<?= base_url() ?>template/dist/js/adminlte.min.js"></script>
     <!-- AdminLTE for demo purposes -->
-    <script src="<?php base_url() ?>template/dist/js/demo.js"></script>
+    <script src="<?= base_url() ?>template/dist/js/demo.js"></script>
     <!-- page script -->
-
+    <!-- CK EDITOR -->
+    <script src="<?= base_url() ?>template/ckeditor/ckeditor.js" type="text/javascript"></script>
+    <script src="<?= base_url() ?>template/ckeditor/samples/js/sample.js" type="text/javascript"></script>
 </head>

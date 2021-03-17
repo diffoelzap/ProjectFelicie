@@ -36,6 +36,10 @@
     });
   });
 </script>
+<!-- Ck Editor Script -->
+<script>
+    initSample();
+</script>
 </body>
 </html>
 
