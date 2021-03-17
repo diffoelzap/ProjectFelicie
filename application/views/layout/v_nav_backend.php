@@ -33,7 +33,7 @@
           </li>
 
           <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="<?= base_url('kategori') ?>" class="nav-link <?php if($this->uri->segment(1) == 'kategori'){echo "active";}?>">
                 <i class="nav-icon fas fa-list"></i>
                 <p>Kategori</p>
               </a>

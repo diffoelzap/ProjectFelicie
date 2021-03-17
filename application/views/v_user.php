@@ -1,7 +1,7 @@
 <div class="col-md-12">
     <div class="card card-primary">
         <div class="card-header">
-        <h3 class="card-title">Data User</h3>
+        <h3 class="card-title">Data <?= $title ?></h3>
 
         <div class="card-tools">
             <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add">
