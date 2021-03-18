@@ -12,7 +12,7 @@ class M_admin extends CI_Model
     {
         return $this->db->get('tbl_kategori')->num_rows();
     }
-    public function total_pelanggan()
+    public function total_user()
     {
         $this->db->select('level_user');
         $this->db->from('tbl_user');
