@@ -48,7 +48,7 @@
             </table>
                     <button type="submit" class="btn btn-primary btn-flat"><i class="fa fa-save"></i> Update Keranjang</button>
                     <a href="<?= base_url('belanja/clear') ?>" class="btn btn-danger btn-flat"><i class="fas fa-recycle"></i> Bersihkan Keranjang</a>
-                    <a href="#" class="btn btn-success btn-flat"><i class="fas fa-check-square"></i> Checkout</a>
+                    <a href="<?= base_url('belanja/cekout') ?>" class="btn btn-success btn-flat"><i class="fas fa-check-square"></i> Checkout</a>
                     
                 <?php echo form_close(); ?>
                 <br>
