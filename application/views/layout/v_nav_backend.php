@@ -26,7 +26,7 @@
                with font-awesome or any other icon font library -->
 
            <li class="nav-item">
-              <a href="<?= base_url('admin') ?>" class="nav-link <?php if($this->uri->segment(1) == 'admin'){echo "active";}?>">
+              <a href="<?= base_url('admin') ?>" class="nav-link <?php if($this->uri->segment(1) == 'admin' && $this->uri->segment(2) != 'setting'){echo "active";}?>">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>Dashboard</p>
               </a>
@@ -72,12 +72,9 @@
           </li>
           
           <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
-                <p>
-                  Dashboard
-                  <span class="right badge badge-danger">New</span>
-                </p>
+              <a href="<?= base_url('admin/setting')?>" class="nav-link <?php if($this->uri->segment(2) == 'setting'){echo "active";}?>">
+                <i class="nav-icon fa fa-asterisk"></i>
+                <p>Pengaturan</p>
               </a>
           </li>
 

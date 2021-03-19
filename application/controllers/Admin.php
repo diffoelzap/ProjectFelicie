@@ -23,6 +23,40 @@ class Admin extends CI_Controller {
         $this->load->view('layout/v_wrapper_backend', $data, FALSE);
     }
 
+    public function setting()
+    {
+           
+        $this->form_validation->set_rules('nama_toko', 'Nama Toko', 'required',
+            array('required' => '%s Harus diisi'));
+        $this->form_validation->set_rules('kota', 'Kota', 'required',
+            array('required' => '%s Harus diisi'));
+        $this->form_validation->set_rules('alamat_toko', 'Alamat Toko', 'required',
+            array('required' => '%s Harus diisi'));
+        $this->form_validation->set_rules('no_telpon', 'Nombor Telpon', 'required',
+            array('required' => '%s Harus diisi'));
+
+        if ($this->form_validation->run() == FALSE) {
+            $data = array(
+                'title'        => 'Pengaturan Admin',
+                'setting'      => $this->m_admin->data_setting(),
+                'isi'          => 'v_setting'
+            );
+            $this->load->view('layout/v_wrapper_backend', $data, FALSE);
+        }else{
+            $data = array('id_setting'   => 1,
+                          'lokasi_toko' => $this->input->post('kota'),
+                          'nama_toko'   => $this->input->post('nama_toko'),
+                          'alamat_toko' => $this->input->post('alamat_toko'),
+                          'no_telpon' =>   $this->input->post('no_telpon'
+                           ));
+            $this->m_admin->edit($data);
+            $this->session->set_flashdata('pesan', 'Pengaturan berhasil diganti');
+            redirect('admin/setting');
+        }
+
+       
+    }
+
 
 }
 

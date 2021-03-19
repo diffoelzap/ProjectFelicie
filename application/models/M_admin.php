@@ -20,4 +20,18 @@ class M_admin extends CI_Model
         return $this->db->get()->num_rows();
         
     }
+    public function data_setting()
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_setting');
+        $this->db->where('id_setting', 1);
+        return $this->db->get()->row();
+        
+    }
+    public function edit($data)
+    {
+        $this->db->where('id_setting', $data['id_setting']);
+        $this->db->update('tbl_setting', $data);
+        
+    }
 }
