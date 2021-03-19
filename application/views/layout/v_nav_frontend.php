@@ -50,30 +50,30 @@
         <!-- Messages Dropdown Menu -->
        
         <li class="nav-item">
-            <a class="nav-link" data-toggle="dropdown" href="#">
-            <span class="brand-text font-weight-light">Pelanggan</span>
-            <img src="<?= base_url() ?>template/dist/img/user1-128x128.jpg" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-                style="opacity: .8">
-            </a>
+              
+            <?php if($this->session->userdata('email') == ""){ ?>
+                <a class="nav-link" href="<?= base_url('pelanggan/register')?>">
+                <span class="brand-text font-weight-light">Login/Register</span>
+                <img src="<?= base_url() ?>template/dist/img/user1-128x128.jpg" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+                    style="opacity: .8">
+              </a>
+            <?php }else{ ?>
+              <a class="nav-link" data-toggle="dropdown" href="#">
+                <span class="brand-text font-weight-light">Nama Pelanggan</span>
+                <img src="<?= base_url() ?>template/dist/img/user1-128x128.jpg" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+                    style="opacity: .8">
+              </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
             <div class="dropdown-divider"></div>
             <a href="#" class="dropdown-item">
               <i class="fas fa-envelope mr-2"></i> 4 new messages
               <span class="float-right text-muted text-sm">3 mins</span>
             </a>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item">
-              <i class="fas fa-users mr-2"></i> 8 friend requests
-              <span class="float-right text-muted text-sm">12 hours</span>
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item">
-              <i class="fas fa-file mr-2"></i> 3 new reports
-              <span class="float-right text-muted text-sm">2 days</span>
-            </a>
+          
             <div class="dropdown-divider"></div>
             <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
           </div>
+          <?php } ?>
             
         </li>
         
