@@ -104,6 +104,14 @@
                                     
                                 </div>
                         </div>
+                        <div class="col-sm-12">
+                                <div class="form-group">
+                                <label>Alamat</label>
+                                <input type="text" class="form-control">
+                                </select>
+                                    
+                                </div>
+                        </div>
                 </div>
                 </div>
                 <!-- /.col -->
@@ -115,12 +123,12 @@
                         <td>Rp. <?php echo number_format($this->cart->total(),0); ?></td>
                       </tr>
                       <tr>
-                        <th>Ongkir</th>
-                        <td><label>0</label></td>
+                        <th>Ongkir:</th>
+                        <td><label id="ongkir"></label></td>
                       </tr>
                       <tr>
-                        <th>Total Bayar</th>
-                        <td><label>0</label></td>
+                        <th>Total Bayar:</th>
+                        <td><label id="total_bayar"></label></td>
                       </tr>
                     </table>
                   </div>
@@ -179,14 +187,39 @@
         });
 
         $("select[name=ekspedisi").on("change",function(){
+            //mendapatkan ekspedisi terpilih
+            var ekspedisi_terpilih = $("select[name=ekspedisi]").val();
+            //mendapatkan id kota tujuan terpilih
+            var id_kota_tujuan_terpilih = $("option:selected","select[name=kota]").attr('id_kota');
+            //data ongkos kirim
             $.ajax({
                 type: "POST",
                 url: "<?= base_url('apikey/paket') ?>",
+                data: 'ekspedisi='+ekspedisi_terpilih+'&id_kota='+id_kota_tujuan_terpilih,
                 success: function(hasil_paket){
                     //console.log(hasil_kota);
                     $("select[name=paket]").html(hasil_paket);
                 }
             })
+        });
+
+        $("select[name=paket").on("change",function(){
+            //menampilkan ongkir
+           var dataongkir = $("option:selected", this).attr('ongkir');
+           //format rupiah di javascript
+           var reverse = dataongkir.toString().split('').reverse().join(''),
+               ribuan_ongkir  = reverse.match(/\d{1,3}/g);
+            ribuan_ongkir = ribuan_ongkir.join('.').split('').reverse().join('');
+
+           $("#ongkir").html("Rp. "+ribuan_ongkir);
+           //menghitung total bayar
+           var ongkir = $("option:selected", this).attr('ongkir');
+           var total_bayar = parseInt(ongkir)+parseInt(<?=$this->cart->total()?>);
+
+           var reverse_total = total_bayar.toString().split('').reverse().join(''),
+               total_ongkir  = reverse_total.match(/\d{1,3}/g);
+            total_ongkir = total_ongkir.join('.').split('').reverse().join('');
+           $("#total_bayar").html("Rp. " + total_ongkir);
         });
         
 

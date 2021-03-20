@@ -6,6 +6,16 @@ class Apikey extends CI_Controller {
 
     private $apikey = 'e071bf677a78ffdf734e18e895f6fd80';
 
+    
+    public function __construct()
+    {
+        parent::__construct();
+        //Do your magic here
+        $this->load->model('m_admin');
+        
+    }
+    
+
     public function provinsi()
     {
         $curl = curl_init();
@@ -77,7 +87,7 @@ class Apikey extends CI_Controller {
             $data_kota = $array_response['rajaongkir']['results'];
             echo "<option value=''>--Pilih Kota--</option>";
             foreach ($data_kota as $key => $value) {
-                echo "<option value='".$value['city_id']."'>".$value['city_name']."</option>";
+                echo "<option value='".$value['city_id']."' id_kota='".$value['city_id']."'>".$value['city_name']."</option>";
             }
         }
     }
@@ -90,6 +100,10 @@ class Apikey extends CI_Controller {
     }
     public function paket()
     {
+        $id_kota_asal = $this->m_admin->data_setting()->lokasi_toko;
+        $ekspedisi = $this->input->post('ekspedisi');
+        $id_kota = $this->input->post('id_kota');
+        
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
@@ -102,7 +116,7 @@ class Apikey extends CI_Controller {
           CURLOPT_TIMEOUT => 30,
           CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
           CURLOPT_CUSTOMREQUEST => "POST",
-          CURLOPT_POSTFIELDS => "origin=501&destination=114&weight=1000&courier=tiki",
+          CURLOPT_POSTFIELDS => "origin=".$id_kota_asal."&destination=".$id_kota."&weight=500&courier=".$ekspedisi,
           CURLOPT_HTTPHEADER => array(
             "content-type: application/x-www-form-urlencoded",
             "key: $this->apikey"
@@ -125,7 +139,7 @@ class Apikey extends CI_Controller {
           $datapaket =  $array_response['rajaongkir']['results'][0]['costs'];
           echo '<option value="">--Pilih Paket--</option>';
           foreach ($datapaket as $key => $value) {
-            echo '<option value="'.$value['service'].'">'.$value['service'].'| Rp. '.$value['cost'][0]['value'].'|'.$value['cost'][0]['etd'].' Hari</option>';
+            echo '<option value="'.$value['service'].'" ongkir="'.$value['cost'][0]['value'].'">'.$value['service'].'| Rp. '.$value['cost'][0]['value'].'|'.$value['cost'][0]['etd'].' Hari</option>';
           }
         }
     }
