@@ -177,6 +177,17 @@
                 }
             })
         });
+
+        $("select[name=ekspedisi").on("change",function(){
+            $.ajax({
+                type: "POST",
+                url: "<?= base_url('apikey/paket') ?>",
+                success: function(hasil_paket){
+                    //console.log(hasil_kota);
+                    $("select[name=paket]").html(hasil_paket);
+                }
+            })
+        });
         
 
     })
