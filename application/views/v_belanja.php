@@ -2,6 +2,18 @@
         <div class="card-body pb-0">
           <div class="row d-flex align-items-stretch">
           <div class="col-sm-12">
+          <?php
+                if ($this->session->flashdata('pesan')) 
+                {
+                        echo ' <div class="alert alert-success alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <h5><i class="icon fas fa-check"></i>';
+                        echo $this->session->flashdata('pesan');
+                        echo '</h5></div>';
+                }
+        ?>
+          </div>
+          <div class="col-sm-12">
                     <?php echo form_open('belanja/edit'); ?>
 
             <table class="table" cellpadding="6" cellspacing="1" style="width:100%">

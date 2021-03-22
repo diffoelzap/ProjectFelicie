@@ -5,39 +5,13 @@
                 <div class="col-12">
                   <h4>
                     <i class="fas fa-shopping-cart"></i> Cek Out
-                    <small class="float-right">Date: 2/10/2014</small>
+                    <small class="float-right">Date: <?= date('d-m-Y')?></small>
                   </h4>
                 </div>
                 <!-- /.col -->
               </div>
-              <!-- info row -->
-              <div class="row invoice-info">
-                <div class="col-sm-4 invoice-col">
-                  From
-                  <address>
-                    <strong>Admin, Inc.</strong><br>
-                    795 Folsom Ave, Suite 600<br>
-                    San Francisco, CA 94107<br>
-                    Phone: (804) 123-5432<br>
-                    Email: info@almasaeedstudio.com
-                  </address>
-                </div>
-                <!-- /.col -->
-                <div class="col-sm-4 invoice-col">
-                  
-                </div>
-                <!-- /.col -->
-                <div class="col-sm-4 invoice-col">
-                  <b>Invoice #007612</b><br>
-                  <br>
-                  <b>Order ID:</b> 4F3S8J<br>
-                  <b>Payment Due:</b> 2/22/2014<br>
-                  <b>Account:</b> 968-34567
-                </div>
-                <!-- /.col -->
-              </div>
-              <!-- /.row -->
-
+            
+              
               <!-- Table row -->
               <div class="row">
                 <div class="col-12 table-responsive">
@@ -67,7 +41,17 @@
                 <!-- /.col -->
               </div>
               <!-- /.row -->
-
+              <?php
+                echo validation_errors(' <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                ','</div>');
+                
+              ?>
+              <?php 
+                  echo form_open('belanja/cekout');
+                  $no_order = date('Ymd').strtoupper(random_string('alnum',8));
+                  
+              ?>
               <div class="row">
                 <!-- accepted payments column -->
                 <div class="col-sm-8 invoice-col">
@@ -104,12 +88,28 @@
                                     
                                 </div>
                         </div>
-                        <div class="col-sm-12">
+                        <div class="col-sm-8">
                                 <div class="form-group">
                                 <label>Alamat</label>
-                                <input type="text" class="form-control">
-                                </select>
-                                    
+                                <input type="text" name="alamat" class="form-control" required>
+                                </div>
+                        </div>
+                        <div class="col-sm-4">
+                                <div class="form-group">
+                                <label>Kode Pos</label>
+                                <input type="text" name="kode_pos" class="form-control" required>
+                                </div>
+                        </div>
+                        <div class="col-sm-6">
+                                <div class="form-group">
+                                <label>Nama Penerima</label>
+                                <input type="text" name="nama_penerima" class="form-control" required>
+                                </div>
+                        </div>
+                        <div class="col-sm-6">
+                                <div class="form-group">
+                                <label>HP Penerima</label>
+                                <input type="text" name="hp_penerima" class="form-control" required>
                                 </div>
                         </div>
                 </div>
@@ -119,7 +119,7 @@
                   <div class="table-responsive">
                     <table class="table">
                       <tr>
-                        <th style="width:50%">Subtotal:</th>
+                        <th style="width:50%">Grand Total:</th>
                         <td>Rp. <?php echo number_format($this->cart->total(),0); ?></td>
                       </tr>
                       <tr>
@@ -137,17 +137,39 @@
               </div>
               <!-- /.row -->
 
-              <!-- this row will not appear when printing -->
+              <!-- Simpan Transaksi -->
+              <input name="no_order" value="<?= $no_order?>" hidden>
+              <input name="estimasi" hidden>
+              <input name="ongkir" hidden>
+              <input name="grand_total" value="<?= $this->cart->total() ?>" hidden>
+              <input name="total_bayar" hidden>
+              
+              <!-- End Transaksi -->
+              
+              <!-- Simpan Rinci Transaksi -->
+              <?php 
+              $i = 1;
+              foreach ($this->cart->contents() as $items) {
+                  echo form_hidden('qty'.$i++, $items['qty']);
+                  
+              }
+              ?>
+              <!-- End Transaksi -->
+
               <div class="row no-print">
                 <div class="col-12">
                   <a href="<?= base_url('belanja') ?>" class="btn btn-warning"><i class="fas fa-backward"></i> Kembali ke Keranjang</a>
                  
-                  <button type="button" class="btn btn-primary float-right" style="margin-right: 5px;">
+                  <button type="submit" class="btn btn-primary float-right" style="margin-right: 5px;">
                     <i class="fas fa-shopping-cart"></i> Proses Check Out
                   </button>
                 </div>
               </div>
+              <?php echo form_close(); ?>
             </div>
+
+
+
             <script>
 
     $(document).ready(function(){
@@ -220,6 +242,12 @@
                total_ongkir  = reverse_total.match(/\d{1,3}/g);
             total_ongkir = total_ongkir.join('.').split('').reverse().join('');
            $("#total_bayar").html("Rp. " + total_ongkir);
+
+           //estimasi dan ongkir
+           var estimasi = $("option:selected", this).attr('estimasi');
+           $("input[name=estimasi]").val(estimasi);
+           $("input[name=ongkir]").val(dataongkir);
+           $("input[name=total_bayar]").val(total_bayar);
         });
         
 
