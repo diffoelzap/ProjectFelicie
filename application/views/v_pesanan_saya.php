@@ -53,10 +53,18 @@
                                 </td>
                                 <td>
                                     <b>Rp. <?= number_format($value->total_bayar,0) ?></b><br>
-                                    <span class="badge badge-warning">Belum Bayar</span>
+                                    <?php if($value->status_bayar == 0){ ?>
+                                            <span class="badge badge-warning">Belum Bayar</span>
+                                    <?php } else { ?>
+                                            <span class="badge badge-success">Sudah Bayar</span><br>
+                                            <span class="badge badge-primary">Menunggu Verifikasi</span>
+                                    <?php } ?>
                                 </td>
                                 <td>
-                                    <a href="" class="btn btn-sm btn-flat btn-primary">Bayar</a>
+                                    <?php if($value->status_bayar == 0){ ?>
+                                        <a href="<?= base_url('pesanan_saya/bayar/'.$value->id_transaksi)?>" class="btn btn-sm btn-flat btn-primary">Bayar</a>
+                                    <?php } ?>
+                                    
                                 </td>
                             </tr>
                             <?php } ?>
