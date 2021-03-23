@@ -61,8 +61,33 @@ class Admin extends CI_Controller {
         $data = array(
             'title'        => 'Pesanan Masuk',
             'pesanan'      => $this->m_pesanan_masuk->pesanan(),
+            'pesanan_diproses' => $this->m_pesanan_masuk->pesanan_diproses(),
+            'pesanan_dikirim'  => $this->m_pesanan_masuk->pesanan_dikirim(),
             'isi'          => 'v_pesanan_masuk');
         $this->load->view('layout/v_wrapper_backend', $data, FALSE);
+    }
+    public function proses($id_transaksi)
+    {
+        $data = array('id_transaksi' => $id_transaksi,
+                      'status_order' => '1' 
+                      );
+                      $this->m_pesanan_masuk->edit_order($data);
+                      $this->session->set_flashdata('pesan', 'Pesanan Berhasil DiProses / DiKemas');
+                      
+                      redirect('admin/pesanan_masuk','refresh');
+                      
+    }
+    public function kirim($id_transaksi)
+    {
+        $data = array('id_transaksi' => $id_transaksi,
+                      'no_resi'      => $this->input->post('no_resi'),
+                      'status_order' => '2' 
+                      );
+                      $this->m_pesanan_masuk->edit_order($data);
+                      $this->session->set_flashdata('pesan', 'Pesanan Berhasil DiKirim');
+                      
+                      redirect('admin/pesanan_masuk','refresh');
+                      
     }
 
 
