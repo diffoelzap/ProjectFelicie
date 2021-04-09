@@ -18,14 +18,12 @@ class Barang extends CI_Controller {
     public function index()
     {
         $data = array(
-            'title'  => 'Barang',
+            'title'  => 'Produk',
             'barang' => $this->m_barang->get_all_data(),
             'isi'    => 'barang/v_barang'
         );
         $this->load->view('layout/v_wrapper_backend', $data, FALSE);
     }
-
-    // Add a new item
     public function add()
     {   
         $this->form_validation->set_rules('nama_barang', 'Nama barang', 'required',
@@ -42,7 +40,7 @@ class Barang extends CI_Controller {
         
         if ($this->form_validation->run() == TRUE) {
             $config['upload_path'] = './assets/gambar/';
-            $config['allowed_types'] = 'gif|jpg|png|jpeg|ico';
+            $config['allowed_types'] = 'jpg|png|jpeg|ico';
             $config['max_size']     = '2000';
 
             // Alternately you can set preferences by calling the ``initialize()`` method. Useful if you auto-load the class:
@@ -50,7 +48,7 @@ class Barang extends CI_Controller {
             $field_name = "gambar";
             if(!$this->upload->do_upload($field_name)){
                 $data = array(
-                    'title'           => 'Tambah Barang',
+                    'title'           => 'Tambah Produk',
                     'kategori'        => $this->m_kategori->get_all_data(),
                     'error_upload'    => $this->upload->display_errors(),  
                     'isi'             => 'barang/v_tambah'
@@ -78,7 +76,7 @@ class Barang extends CI_Controller {
         } 
 
         $data = array(
-            'title'    => 'Tambah Barang',
+            'title'    => 'Tambah Produk',
             'kategori' => $this->m_kategori->get_all_data(),
             'isi'      => 'barang/v_tambah'
         );
@@ -94,7 +92,6 @@ class Barang extends CI_Controller {
         $this->load->view('layout/v_wrapper_backend', $data, FALSE);
     }
 
-    //Update one item
     public function edit( $id_barang = NULL )
     {
         $this->form_validation->set_rules('nama_barang', 'Nama barang', 'required',
@@ -119,7 +116,7 @@ class Barang extends CI_Controller {
             $field_name = "gambar";
             if(!$this->upload->do_upload($field_name)){
                 $data = array(
-                    'title'           => 'Edit Barang',
+                    'title'           => 'Edit Produk',
                     'kategori'        => $this->m_kategori->get_all_data(),
                     'barang'          => $this->m_barang->get_data($id_barang),
                     'error_upload'    => $this->upload->display_errors(),  
@@ -169,7 +166,7 @@ class Barang extends CI_Controller {
         } 
 
         $data = array(
-            'title'    => 'Edit Barang',
+            'title'    => 'Edit Produk',
             'kategori' => $this->m_kategori->get_all_data(),
             'barang'   => $this->m_barang->get_data($id_barang),
             'isi'      => 'barang/v_edit'

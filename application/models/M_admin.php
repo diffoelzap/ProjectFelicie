@@ -34,4 +34,15 @@ class M_admin extends CI_Model
         $this->db->update('tbl_setting', $data);
         
     }
+    public function total_transaksi()
+    {
+        $this->db->select('SUM(tbl_transaksi.total_bayar) AS total');
+        $this->db->from('tbl_transaksi');
+        $this->db->where('status_bayar=1');
+        return $this->db->get()->row();
+    }
+    public function total_pesanan()
+    {
+        return $this->db->get('tbl_transaksi')->num_rows();
+    }
 }

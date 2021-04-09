@@ -37,8 +37,10 @@ class Pelanggan extends CI_Controller {
             $data = array(
                           'nama_pelanggan' => $this->input->post('nama_pelanggan'),
                           'email'   => $this->input->post('email'),
-                          'password' => $this->input->post('password')
-                           );
+                          'password' => $this->input->post('password'),
+                          'gender' => $this->input->post('gender'),
+                          'umur' => $this->input->post('umur')
+                          );
             $this->m_pelanggan->register($data);
             $this->session->set_flashdata('pesan', 'Selamat, Pendaftaran berhasil silahkan login kembali');
             redirect('pelanggan/register');

@@ -1,10 +1,10 @@
 <div class="col-md-12">
-    <div class="card card-primary">
-        <div class="card-header">
-        <h3 class="card-title">Data <?= $title ?></h3>
+    <div class="card" >
+        <div class="card-header"  style="background-color:#FFF5EE">
+        <h3 class="card-title" style="color:#000000">Data Admin</h3>
 
         <div class="card-tools">
-            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add">
+            <button type="button" class="btn btn-sm" data-toggle="modal" data-target="#add" style="background-color:#BC8F8F">
             <i class="fas fa-plus"></i>Tambah</button>
         </div>
         <!-- /.card-tools -->
@@ -51,6 +51,50 @@
                         <td class="text-center">
                             <button class="btn btn-warning btn-sm"  data-toggle="modal" data-target="#edit<?= $value->id_user ?>"><i class="fa fa-edit"></i></button>
                             <button class="btn btn-danger btn-sm"   data-toggle="modal" data-target="#delete<?= $value->id_user ?>"><i class="fa fa-trash"></i></button>
+                        </td>
+                    </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+            
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+</div>
+<div class="col-md-12">
+<div class="card" >
+        <div class="card-header"  style="background-color:#FFF5EE">
+        <h3 class="card-title" style="color:#000000">Data Pelanggan</h3>
+
+        <!-- /.card-tools -->
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+
+            <table class="table table-bordered" id=example2>
+                <thead class="text-center">
+                <tr>
+                    <th>No</th>
+                    <th>Nama Pelanggan</th>
+                    <th>Email</th>
+                    <th>Gender</th>
+                    <th>Umur</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <?php $no = 1; 
+                    foreach ($pelanggan as $key => $value) { ?>
+                    <tr> 
+                        <td class="text-center"><?= $no++;?></td>
+                        <td class="text-center"><?= $value->nama_pelanggan ?></td>
+                        <td class="text-center"><?= $value->email ?></td>
+                        <td class="text-center"><?= $value->gender ?></td>
+                        <td class="text-center"><?= $value->umur?> </td>
+                        <td class="text-center">
+                            <button class="btn btn-warning btn-sm"  data-toggle="modal" data-target="#edit<?= $value->id_pelanggan ?>"><i class="fa fa-edit"></i></button>
+                            <button class="btn btn-danger btn-sm"   data-toggle="modal" data-target="#delete<?= $value->id_pelanggan ?>"><i class="fa fa-trash"></i></button>
                         </td>
                     </tr>
                     <?php } ?>

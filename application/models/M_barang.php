@@ -23,10 +23,28 @@ class M_barang extends CI_Model {
         return $this->db->get()->row();
         
     }
+    public function get_barang($id = null)
+    {
+        if ($id === null) {
+            return $this->db->get('tbl_barang')->result_array();
+        }else{
+            return $this->db->get_where('tbl_barang',['id_barang' => $id])->result_array();
+        }
+    }
+    public function add_barang($data)
+	{
+		 $this->db->insert('tbl_barang', $data);
+         return $this->db->affected_rows();
+	}	
     public function add($data)
     {
         $this->db->insert('tbl_barang', $data);
         
+    }
+    public function edit_barang($data,$id)
+    {
+        $this->db->update('tbl_barang',$data,['id_barang' => $id]);
+        return $this->db->affected_rows();
     }
     public function edit($data)
     {
@@ -38,6 +56,11 @@ class M_barang extends CI_Model {
     {
         $this->db->where('id_barang', $data['id_barang']);
         $this->db->delete('tbl_barang', $data);        
+    }
+    public function delete_barang($id)
+    {
+        $this->db->delete('tbl_barang',['id_barang' => $id]);
+        return $this->db->affected_rows();
     }
 
 }

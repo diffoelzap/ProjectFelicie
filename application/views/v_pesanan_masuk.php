@@ -63,6 +63,8 @@
                                     <?php if($value->status_bayar == 1){ ?>
                                         <button class="btn btn-sm btn-success btn-flat" 
                                         data-toggle="modal" data-target="#cek<?= $value->id_transaksi ?>">Cek Bukti Bayar</button>
+                                        <button class="btn btn-sm btn-danger btn-flat" 
+                                        data-toggle="modal" data-target="#cekbatal<?= $value->id_transaksi ?>">Pembatalan Pemesanan</button>
                                         <a href="<?= base_url('admin/proses/'.$value->id_transaksi)?>" 
                                         class="btn btn-sm btn-flat btn-primary">Proses</a>
                                     <?php } ?>
@@ -79,7 +81,7 @@
                                 <th>Tanggal</th>
                                 <th>Ekspedisi</th>
                                 <th>Total Bayar</th>
-                                <th></th>
+                                <th>Keterangan</th>
                             </tr>
                             <?php foreach ($pesanan_diproses as $key => $value) {?>
                             <tr>
@@ -174,7 +176,90 @@
               <!-- /.card -->
             </div>
           </div>
-        </div>    
+        </div>
+<div class="col-sm-12">
+    <div class="card card-primary card-outline card-outline-tabs">
+              <div class="card-header p-0 border-bottom-0">
+                <ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
+                  <li class="nav-item">
+                    <a class="nav-link active" id="custom-tabs-four-home-tab" data-toggle="pill" 
+                    href="#custom-tabs-four-home" role="tab" aria-controls="custom-tabs-four-home" aria-selected="true">Pembatalan Pemesanan</a>
+                  </li>
+                </ul>
+               </div>
+               <div class="card-body">
+                <div class="tab-content" id="custom-tabs-four-tabContent">
+                  <div class="tab-pane fade show active" id="custom-tabs-four-home" role="tabpanel" aria-labelledby="custom-tabs-four-home-tab">
+                        <table class="table">
+                            <tr>
+                                <th>No Order</th>
+                                <th>Tanggal</th>
+                                <th>Ekspedisi</th>
+                                <th>Total Bayar</th>
+                                <th>Keterangan</th>
+                            </tr>
+                            <?php foreach ($pesanan_batal as $key => $value) {?>
+                            <tr>
+                                <td><?= $value->no_order ?></td>
+                                <td><?= $value->tgl_order ?></td>
+                                <td>
+                                    <b><?= $value->ekspedisi ?></b><br>
+                                    Paket : <?= $value->paket ?><br>
+                                    Ongkir : <?= number_format($value->ongkir,0) ?><br>
+
+                                </td>
+                                <td>
+                                    <b>Rp. <?= number_format($value->total_bayar,0) ?></b><br>
+                                    <span class="badge badge-danger">Di batalkan</span>
+                                </td>
+                                <td>
+                                <?= $value->keterangan ?>
+                                </td>
+                            </tr>
+                            <?php } ?>
+                        </table>
+                  </div>
+    </div>
+</div>
+<?php foreach ($pesanan as $key => $value) { ?>
+<!-- Modal Cek Bukti Pembayaran -->
+<div class="modal fade" id="cekbatal<?= $value->id_transaksi ?>">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title"><?= $value->no_order ?></h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+            <?php 
+
+            echo form_open('admin/pembatalan_pemesanan/'.$value->id_transaksi);
+            ?>
+
+            <div class="form-group">
+                <label>Keterangan</label>
+                <input type="text" name="keterangan" class="form-control" placeholder="Keterangan" required>
+            </div>
+
+            <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+            <button type="submit" class="btn btn-primary">Pemesanan Dibatakan</button>
+            </div>
+            <?php
+            echo form_close();
+            ?>
+
+            </div>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
+<?php } ?>
+
 
 <?php foreach ($pesanan as $key => $value) { ?>
 <!-- Modal Cek Bukti Pembayaran -->
@@ -269,3 +354,4 @@
       </div>
       <!-- /.modal -->
 <?php } ?>
+

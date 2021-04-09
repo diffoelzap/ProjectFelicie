@@ -10,6 +10,7 @@ class User extends CI_Controller {
         parent::__construct();
         //Load Dependencies
         $this->load->model('m_user');
+        $this->load->model('m_pelanggan');
         
     }
 
@@ -19,6 +20,7 @@ class User extends CI_Controller {
         $data = array(
             'title' => 'User',
             'user'  => $this->m_user->get_all_data(),
+            'pelanggan' => $this->m_pelanggan->get_all_pelanggan(),
             'isi'   => 'v_user');
         $this->load->view('layout/v_wrapper_backend', $data, FALSE);
     }

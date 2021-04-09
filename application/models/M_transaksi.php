@@ -9,10 +9,43 @@ class M_transaksi extends CI_Model {
         $this->db->insert('tbl_transaksi', $data);
         
     }
+    public function get_transaksi($id = null)
+    {
+        if ($id === null) {
+            return $this->db->get('tbl_transaksi')->result_array();
+        }else{
+            return $this->db->get_where('tbl_transaksi',['id_transaksi' => $id])->result_array();
+        }
+    }
+    public function edit_transaksi($data,$id)
+    {
+        $this->db->update('tbl_transaksi',$data,['id_transaksi' => $id]);
+        return $this->db->affected_rows();
+    }
+    public function add_transaksi($data)
+	{
+		 $this->db->insert('tbl_transaksi', $data);
+         return $this->db->affected_rows();
+	}
+    public function delete_transaksi($id)
+    {
+        $this->db->delete('tbl_transaksi',['id_transaksi' => $id]);
+        return $this->db->affected_rows();
+    }	
+
+
     public function simpan_rinci_transaksi($data_rinci)
     {
         $this->db->insert('tbl_rinci_transaksi', $data_rinci);
         
+    }
+    public function get_rinci_transaksi($id = null)
+    {
+        if ($id === null) {
+            return $this->db->get('tbl_rinci_transaksi')->result_array();
+        }else{
+            return $this->db->get_where('tbl_rinci_transaksi',['id_rinci' => $id])->result_array();
+        }
     }
     public function belum_bayar()
     {
@@ -73,7 +106,6 @@ class M_transaksi extends CI_Model {
         $this->db->where('id_transaksi', $data['id_transaksi']);
         $this->db->update('tbl_transaksi', $data);
     }
-    
 
 }
 

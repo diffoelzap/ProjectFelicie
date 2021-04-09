@@ -56,6 +56,26 @@
                     </div>
                 </div>
                 </div>
+                <hr>
+                <div class="input-group mb-3">
+                <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="gender" id="inlineRadio1" value="Laki - Laki">
+                <label class="form-check-label" for="inlineRadio1">Laki - Laki</label>
+                </div>
+                <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="gender" id="inlineRadio2" value="Perempuan">
+                <label class="form-check-label" for="inlineRadio2">Perempuan</label>
+                </div>
+                </div>
+                <hr>
+                <div class="input-group mb-3">
+                <input type="number" name="umur" value="<?= set_value('umur')?>" class="form-control" placeholder="Umur">
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                    <span class="fas fa-user"></span>
+                    </div>
+                </div>
+                </div>
                 <div class="row">
                
                 <!-- /.col -->

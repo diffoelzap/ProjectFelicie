@@ -10,6 +10,8 @@ class Admin extends CI_Controller {
         parent::__construct();
         $this->load->model('m_admin');
         $this->load->model('m_pesanan_masuk');
+        $this->load->model('m_pelanggan');
+
         
         
     }
@@ -21,6 +23,9 @@ class Admin extends CI_Controller {
             'total_barang' => $this->m_admin->total_barang(),
             'total_kategori' =>  $this->m_admin->total_kategori(),
             'total_user' => $this->m_admin->total_user(),
+            'total_transaksi' => $this->m_admin->total_transaksi(),
+            'pesanan_masuk'  => $this->m_admin->total_pesanan(),
+            'total_pelanggan'  => $this->m_pelanggan->total_pelanggan(),
             'isi'          => 'v_admin');
         $this->load->view('layout/v_wrapper_backend', $data, FALSE);
     }
@@ -46,8 +51,8 @@ class Admin extends CI_Controller {
             $this->load->view('layout/v_wrapper_backend', $data, FALSE);
         }else{
             $data = array('id_setting'   => 1,
-                          'lokasi_toko' => $this->input->post('kota'),
                           'nama_toko'   => $this->input->post('nama_toko'),
+                          'lokasi_toko' => $this->input->post('kota'),
                           'alamat_toko' => $this->input->post('alamat_toko'),
                           'no_telpon' =>   $this->input->post('no_telpon'
                            ));
@@ -64,6 +69,7 @@ class Admin extends CI_Controller {
             'pesanan_diproses' => $this->m_pesanan_masuk->pesanan_diproses(),
             'pesanan_dikirim'  => $this->m_pesanan_masuk->pesanan_dikirim(),
             'pesanan_selesai'  => $this->m_pesanan_masuk->pesanan_selesai(),
+            'pesanan_batal'  => $this->m_pesanan_masuk->pesanan_batal(),
             'isi'          => 'v_pesanan_masuk');
         $this->load->view('layout/v_wrapper_backend', $data, FALSE);
     }
@@ -77,6 +83,17 @@ class Admin extends CI_Controller {
                       
                       redirect('admin/pesanan_masuk','refresh');
                       
+    }
+    public function pembatalan_pemesanan($id_transaksi)
+    {
+        $data = array('id_transaksi' => $id_transaksi,
+                      'status_order' => '4', 
+                      'keterangan' => $this->input->post('keterangan')
+                      );
+                      $this->m_pesanan_masuk->edit_order($data);
+                      $this->session->set_flashdata('pesan', 'Pemesanan dibatalkan');
+                      
+                      redirect('admin/pesanan_masuk','refresh');
     }
     public function kirim($id_transaksi)
     {
